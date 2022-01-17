@@ -5,7 +5,7 @@ import Header from "../component/header";
 var BearerToken = "";
 
 /*
-  nedded value for login
+  needed value for login
   username: "erp_user",
   password: "12qwaszx12qwaszx",
 */

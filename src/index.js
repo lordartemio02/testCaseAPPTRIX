@@ -10,6 +10,7 @@ import configureStrore from './redux/store'
 import { Provider } from 'react-redux';
 import Registration from './pages/registration';
 import Login from './pages/login';
+import WorkItems from './component/workItems';
 
 const store = configureStrore()
 
@@ -24,6 +25,7 @@ ReactDOM.render(
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/:login" element={<User />} />
           <Route exact path="/issues" element={<Issues />} />
+          <Route exact path="/issues/:id" element={<WorkItems />} />
         </Routes>
       </Router>
     </Provider>

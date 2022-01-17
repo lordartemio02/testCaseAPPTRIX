@@ -5,7 +5,8 @@ const defaultState = {
     users: [],
     token: "perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL",
     issues: [],
-    filtredIssues: []
+    filtredIssues: [],
+    workItems: []
 }
 
 export default (state = defaultState, actionParametr) => {
@@ -16,6 +17,8 @@ export default (state = defaultState, actionParametr) => {
             return { ...state, issues: actionParametr.issues };
         case actions.GET_FILTRED_ISSUES:
             return { ...state, filtredIssues: actionParametr.filtredIssues };
+        case actions.GET_WORKITEMS:
+            return { ...state, workItems: actionParametr.workItems };
         default:
             return state;
     }
@@ -71,8 +74,24 @@ export const getFiltredIssues = (name) => async (dispatch) => {
             })
             .then((res) => {
                 dispatch({ type: actions.GET_FILTRED_ISSUES, filtredIssues: res.data })
-
-                // setFilteredData(res.data);
+            });
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getWorkItems = (id) => async (dispatch) => {
+    try {
+        await axios
+            .get("/api/issues/" + id + "/timeTracking/workItems", {
+                params: {
+                    fields: "author(id,name),creator(id,name),date,duration(id,minutes,presentation),id,name,text,type(id,name)"
+                },
+                headers: {
+                    Authorization: "Bearer " + defaultState.token,
+                },
+            })
+            .then((res) => {
+                dispatch({ type: actions.GET_WORKITEMS, workItems: res.data })
             });
     } catch (error) {
         console.log(error)

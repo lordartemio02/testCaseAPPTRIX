@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getIssues as getIssuesAction } from "../modules/store";
-import { getFiltredIssues as getFiltredIssuesAction } from "../modules/store";
+import { getIssues as getIssuesAction, getFiltredIssues as getFiltredIssuesAction  } from "../modules/store";
 import { connect } from "react-redux";
 import Header from "./header";
+import { useNavigate } from "react-router";
 
 var token = "perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL";
 
 const Issues = ({ issues, filtredIssues, getIssues, getFiltredIssues }) => {
+  let navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
   const [q, setQ] = useState("");
   useEffect(() => {
@@ -81,6 +82,15 @@ const Issues = ({ issues, filtredIssues, getIssues, getFiltredIssues }) => {
               <td>{item.id}</td>
               <td>{item.summary}</td>
               <td>{item.project.name}</td>
+              <td>
+                    <button
+                      onClick={() => {
+                        navigate(`/issues/${item.id}`);
+                      }}
+                    >
+                      Timesheet
+                    </button>
+                  </td>
             </tr>
           ))}
         </tbody>
