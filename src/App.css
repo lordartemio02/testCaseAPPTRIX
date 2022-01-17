@@ -4,6 +4,13 @@
 .text-center{
   text-align: center;
 }
+.m-24{
+  margin: 24px 24px 0px 24px;
+}
+header{
+  height: 60px;
+  line-height: 60px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

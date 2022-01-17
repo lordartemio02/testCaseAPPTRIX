@@ -4,12 +4,18 @@ import * as actions from "./actions"
 const defaultState = {
     users: [],
     token: "perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL",
+    issues: [],
+    filtredIssues: []
 }
 
 export default (state = defaultState, actionParametr) => {
     switch (actionParametr.type) {
         case actions.GET_USERS:
             return { ...state, users: actionParametr.users };
+        case actions.GET_ISSUES:
+            return { ...state, issues: actionParametr.issues };
+        case actions.GET_FILTRED_ISSUES:
+            return { ...state, filtredIssues: actionParametr.filtredIssues };
         default:
             return state;
     }
@@ -28,6 +34,45 @@ export const getUsers = () => async (dispatch) => {
             })
             .then((res) => {
                 dispatch({ type: actions.GET_USERS, users: res.data })
+            });
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getIssues = () => async (dispatch) => {
+    try {
+        await axios
+            .get("/api/issues", {
+                params: {
+                    fields: "id,summary,project(name)",
+                },
+                headers: {
+                    Authorization: "Bearer " + defaultState.token,
+                },
+            })
+            .then((res) => {
+                dispatch({ type: actions.GET_ISSUES, issues: res.data })
+            });
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getFiltredIssues = (name) => async (dispatch) => {
+    try {
+        await axios
+            .get("/api/issues", {
+                params: {
+                    fields: "id,summary,project(name)",
+                    query: "project:{" + name + "}",
+                },
+                headers: {
+                    Authorization: "Bearer " + defaultState.token,
+                },
+            })
+            .then((res) => {
+                dispatch({ type: actions.GET_FILTRED_ISSUES, filtredIssues: res.data })
+
+                // setFilteredData(res.data);
             });
     } catch (error) {
         console.log(error)

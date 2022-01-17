@@ -1,5 +1,9 @@
+import Header from "../component/header";
+
 const Registration = () => {
   console.log("u need registr");
-  return <div>Registration page</div>;
+  return <div>
+    <Header />
+    Registration page</div>;
 };
 export default Registration;

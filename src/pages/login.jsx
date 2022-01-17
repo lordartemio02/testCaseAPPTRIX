@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Header from "../component/header";
 
 var BearerToken = "";
 
@@ -40,6 +41,7 @@ const Login = () => {
       });
   }
   return <div>
+        <Header />
         <input id="name" placeholder="username" />
         <input id="password" placeholder="password" />
         <button onClick={login}>

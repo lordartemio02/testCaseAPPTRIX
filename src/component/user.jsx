@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUsers as getUsersAction } from "../modules/store";
 import { getFiltredIssues as getFiltredIssues } from "../modules/store";
+import Header from "./header";
 
 const User = ({ users, getUsers }) => {
   let user;
@@ -13,6 +14,7 @@ const User = ({ users, getUsers }) => {
   user = users.find((v) => v.login === login);
   return (
     <div>
+      <Header />
         {
             user?.lenght> 0
             ? <div></div>
@@ -24,7 +26,6 @@ const User = ({ users, getUsers }) => {
                 <p>email: {user?.email}</p>
             </div>
         }
-
     </div>
   );
 };

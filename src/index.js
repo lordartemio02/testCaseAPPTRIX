@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import User from './component/user';
+import Issues from './component/issues';
 import configureStrore from './redux/store'
 import { Provider } from 'react-redux';
 import Registration from './pages/registration';
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route exact path="/registration" element={<Registration />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/:login" element={<User />} />
+          <Route exact path="/issues" element={<Issues />} />
         </Routes>
       </Router>
     </Provider>

@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import {connect} from 'react-redux'
 import { useNavigate } from "react-router";
+import Header from "./component/header";
 import { getUsers as getUsersAction } from "./modules/store";
 
 function App({users, getUsers}) {
@@ -11,6 +12,7 @@ function App({users, getUsers}) {
   }, [])
   return (
     <div>
+      <Header />
       <table>
         <thead>
           <tr>
