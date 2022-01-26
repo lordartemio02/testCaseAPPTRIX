@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
-import { getWorkItems as getWorkItemsAction } from "../modules/store";
+import { getWorkItems as getWorkItemsAction } from "../modules/api";
 import Header from "./header";
 import {
   Document,

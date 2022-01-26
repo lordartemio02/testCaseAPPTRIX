@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getIssues as getIssuesAction, getFiltredIssues as getFiltredIssuesAction  } from "../modules/store";
+import { getIssues as getIssuesAction, getFiltredIssues as getFiltredIssuesAction  } from "../modules/api";
 import { connect } from "react-redux";
 import Header from "./header";
 import { useNavigate } from "react-router";
@@ -15,21 +15,11 @@ const Issues = ({ issues, filtredIssues, getIssues, getFiltredIssues }) => {
     filtered(q);
   }, [q]);
   useEffect(() => {
-    axios
-      .get("/api/issues", {
-        params: {
-          fields: "id,summary,project(name)",
-        },
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        setFilteredData(res.data);
-      });
     getIssues();
-
   }, []);
+  useEffect(() => {
+    setFilteredData(issues)
+  }, [issues]);
   const filtered = (e) => {
     let filtered;
     if (e.length > 2) {

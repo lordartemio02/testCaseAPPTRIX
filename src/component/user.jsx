@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getUsers as getUsersAction } from "../modules/store";
+import { getUsers as getUsersAction } from "../modules/api";
 import { getFiltredIssues as getFiltredIssues } from "../modules/store";
 import Header from "./header";
 

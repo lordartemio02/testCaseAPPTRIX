@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {connect} from 'react-redux'
 import { useNavigate } from "react-router";
 import Header from "./component/header";
-import { getUsers as getUsersAction } from "./modules/store";
+import { getUsers as getUsersAction } from "./modules/api";
 
 function App({users, getUsers}) {
   let navigate = useNavigate();
